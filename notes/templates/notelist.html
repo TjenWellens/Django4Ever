@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Note list</title>
+</head>
+<body>
+<h1>Note list</h1>
+<table>
+    <tr>
+        <th>guid</th>
+        <th>title</th>
+{#        <th>contentLength</th>#}
+        <th>created</th>
+        <th>updated</th>
+{#        <th>deleted</th>#}
+{#        <th>updateSequenceNum</th>#}
+{#        <th>notebookGuid</th>#}
+{#        <th>tagGuids</th>#}
+{#        <th>attributes</th>#}
+{#        <th>largestResourceMime</th>#}
+{#        <th>largestResourceSize</th>#}
+    </tr>
+    {% for note in note_list %}
+        <tr>
+            <td>{{ note.guid }}</td>
+            <td>{{ note.title }}</td>
+{#            <td>{{ note.contentLengtr }}</td>#}
+            <td>{{ note.created }}</td>
+            <td>{{ note.updated }}</td>
+{#            <td>{{ note.deleted }}</td>#}
+{#            <td>{{ note.updateSequenceNum }}</td>#}
+{#            <td>{{ note.notebookGuid }}</td>#}
+{#            <td>{{ note.tagGuids }}</td>#}
+{#            <td>{{ note.attributes }}</td>#}
+{#            <td>{{ note.largestResourceMime }}</td>#}
+{#            <td>{{ note.largestResourceSize }}</td>#}
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
