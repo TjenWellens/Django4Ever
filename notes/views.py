@@ -18,7 +18,48 @@ def view_note_list(request):
 
 
 class DummyNote(object):
-    def __init__(self, i):
-        self.guid = i
-        self.title = "Note nr. %d" % i
-        self.contentLengtr = i * 100
+    def __init__(self, guid):
+        self.guid = guid
+        self.title = "Note nr. %d" % guid
+        self.contentLengtr = guid * 100
+        self.content = "Note nr. %d's content..." % guid
+
+
+dev_token = "S=s1:U=9030d:E=1523c272e4a:C=14ae475ff50:P=1cd:A=en-devtoken:V=2:H=df8bb61301f2397ae57baaf5d4185877"
+
+
+
+# views (general splitting code)
+def method_splitter(request, *args, **kwargs):
+    get_view = kwargs.pop('GET', None)
+    post_view = kwargs.pop('POST', None)
+    if request.method == 'GET' and get_view is not None:
+        return get_view(request, *args, **kwargs)
+    elif request.method == 'POST' and post_view is not None:
+        return post_view(request, *args, **kwargs)
+    raise Http404
+
+
+from notes.forms import UpdateNoteForm
+
+
+def update_note_get(request, guid):
+    note = DummyNote(int(guid))
+    form = UpdateNoteForm(
+        initial={
+            'guid': note.guid,
+            'title': note.title,
+            'content': note.content,
+        }
+    )
+    return render(request, 'note_edit.html', {'form': form})
+
+
+def update_note_post(request):
+    form = UpdateNoteForm(request.POST)
+    if form.is_valid():
+        cd = form.cleaned_data
+        guid = cd['guid']
+        title = cd['title']
+        content = cd['content']
+        return HttpResponse('guid: %s<br>title: %s<br>content: %s<br>' % (guid, title, content,))

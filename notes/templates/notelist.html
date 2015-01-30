@@ -20,6 +20,7 @@
 {#        <th>attributes</th>#}
 {#        <th>largestResourceMime</th>#}
 {#        <th>largestResourceSize</th>#}
+        <th></th>   {# edit #}
     </tr>
     {% for note in note_list %}
         <tr>
@@ -35,6 +36,7 @@
 {#            <td>{{ note.attributes }}</td>#}
 {#            <td>{{ note.largestResourceMime }}</td>#}
 {#            <td>{{ note.largestResourceSize }}</td>#}
+            <td><a href="/notes/update/{{ note.guid }}">Edit</a></td>
         </tr>
     {% endfor %}
 </table>

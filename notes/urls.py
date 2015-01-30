@@ -1,8 +1,10 @@
 from django.conf.urls import *
-from notes.views import view_notes, note_number, view_note_list
+from notes import views
 
 urlpatterns = patterns('',
-                       (r'^$', view_notes),
-                       (r'^(\d+)/$', note_number),
-                       (r'^list/$', view_note_list),
+                       (r'^$', views.view_note_list),
+                       (r'^(\d+)/$', views.note_number),
+                       (r'^list/$', views.view_note_list),
+                       (r'^update/$', views.update_note_post),
+                       (r'^update/(\d*)$', views.update_note_get),
 )
